@@ -1,5 +1,5 @@
 # mastersthesis
-The main purpose of this repository is to provide replication files for my master's thesis in a structured form of a complete tree of folders and files. Hopefully, this will enhance the transparency of my results and simplify possible replication of my work.
+The main purpose of this repository is to provide replication files for my master's thesis in a structured form of a complete tree of folders and files. Hopefully, this will enhance the transparency of my results and simplify possible replication of my work. Naturally, source (especially micro-level) data files are not to be shared, hence the "data" folder is included only to complement the structure.
 
 ## thesis
 topic: **Household Heterogeneity and Monetary Policy Transmission in the Czech Economy**  
