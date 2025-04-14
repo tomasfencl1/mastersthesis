@@ -13,7 +13,7 @@ supervisor: PhDr. Jaromír Baxa Ph.D.
 * Replication folders and files tree.
 
 ## acknowledgment
-The codes contained in this repository were created thanks to the STATA replication packages generously provided by Jiri Slacalek for his work Household Balance Sheet Channels of Monetary Policy: A Back of the Envelope Calculation for the Euro Area, co-authored by Tristani Oreste and Violante Giovanni L.
+The codes contained in this repository were created largely thanks to the STATA replication packages generously provided by Jiri Slacalek for his work Household Balance Sheet Channels of Monetary Policy: A Back of the Envelope Calculation for the Euro Area, co-authored by Tristani Oreste and Violante Giovanni L.
 
 ## contact
 Shall there be any questions or remarks regarding the thesis or replication codes, contact me via e-mail at 59887895@fsv.cuni.cz or mrtomfen@gmail.com.
