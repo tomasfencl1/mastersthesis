@@ -1,0 +1,626 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title: Household Heterogeneity and Monetary Policy Transmission in the Czech Economy
+% author: Fencl Tomas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN VAR MATLAB
+% desc: pulls and transforms the VAR responses, creates scaled IRF plot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% the VAR is run via BEARapp, for specification details see the log below
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LOG
+
+Accepted Draws in Percent of Total Number of Draws: 0.130258
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                          %
+%    BAYESIAN ESTIMATION, ANALYSIS AND REGRESSION (BEAR) TOOLBOX           %
+%                                                                          %
+%    This statistical package has been developed by the external           %
+%    developments division of the European Central Bank.                   %
+%                                                                          %
+%    Authors:                                                              %
+%    Alistair Dieppe (alistair.dieppe@ecb.europa.eu)                       %
+%    Björn van Roye  (Bjorn.van_Roye@ecb.europa.eu)                        %
+%                                                                          %
+%    Version 5.0                                                           %
+%                                                                          %
+%    The updated version 5 of BEAR has benefitted from contributions from  %
+%       Boris Blagov, Marius Schulte and Ben Schumann.                     %
+%                                                                          %
+%      This version builds-upon previous versions where Romain Legrand was  %
+%       instrumental in developing BEAR.                                    %
+%    The authors are grateful to the following people for valuable input   %
+%    and advice which contributed to improve the quality of the toolbox:   %
+%    Paolo Bonomolo, Mirco Balatti, Marta Banbura, Niccolo Battistini,     %
+%	 Gabriel Bobeica, Martin Bruns, Fabio Canova, Matteo Ciccarelli,       %
+%    Marek Jarocinski, Michele Lenza, Francesca Loria, Mirela Miescu,      %
+%    Gary Koop, Chiara Osbat, Giorgio Primiceri, Martino Ricci,            %
+%    Michal Rubaszek, Barbara Rossi, Fabian Schupp,                        %
+%    Peter Welz and Hugo Vega de la Cruz. 						           %
+%                                                                          %
+%    These programmes are the responsibilities of the authors and not of   %
+%    the ECB and all errors and ommissions remain those of the authors.    %
+%                                                                          %
+%    Using the BEAR toolbox implies acceptance of the End User Licence     %
+%    Agreement and appropriate acknowledgement should be made.             %
+%                                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+BEAR toolbox estimates
+Date: 26-Apr-2025   Time: 00:18
+
+
+Bayesian VAR
+structural decomposition: sign restrictions (IRFt=4)
+endogenous variables:  3MPRIBOR  mpinfl  empl_log  avgwage_sa_real_log  hpind_log  psx_log  ndcons_real_log  gdp_real_log  er_log 
+exogenous variables:  constant 
+estimation sample: 2008q1-2024q1
+sample size (omitting initial conditions): 61
+number of lags included in regression: 4
+prior: normal-Wishart (sigma as univariate AR)
+hyperparameters:
+autoregressive coefficients (ar):                0.8
+overall tightness (lambda1):                    0.1
+lag decay (lambda3):                            1
+
+
+
+VAR coefficients (beta): posterior estimates
+
+Endogenous: 3MPRIBOR
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)           0.823           0.063           0.764           0.888
+             3MPRIBOR(-2)          -0.027           0.043          -0.067           0.015
+             3MPRIBOR(-3)          -0.027           0.029          -0.058           0.000
+             3MPRIBOR(-4)          -0.022           0.022          -0.044          -0.001
+               mpinfl(-1)           0.027           0.026           0.002           0.053
+               mpinfl(-2)           0.002           0.017          -0.015           0.019
+               mpinfl(-3)          -0.000           0.011          -0.012           0.010
+               mpinfl(-4)          -0.002           0.008          -0.011           0.006
+             empl_log(-1)           0.014           0.033          -0.019           0.047
+             empl_log(-2)          -0.008           0.025          -0.034           0.016
+             empl_log(-3)          -0.004           0.017          -0.022           0.012
+             empl_log(-4)          -0.003           0.013          -0.016           0.010
+  avgwage_sa_real_log(-1)          -0.025           0.018          -0.042          -0.007
+  avgwage_sa_real_log(-2)          -0.002           0.010          -0.012           0.008
+  avgwage_sa_real_log(-3)           0.000           0.007          -0.007           0.008
+  avgwage_sa_real_log(-4)           0.002           0.006          -0.003           0.007
+            hpind_log(-1)           0.024           0.015           0.009           0.038
+            hpind_log(-2)           0.006           0.012          -0.006           0.016
+            hpind_log(-3)           0.002           0.008          -0.006           0.010
+            hpind_log(-4)           0.001           0.006          -0.005           0.008
+              psx_log(-1)           0.011           0.005           0.007           0.016
+              psx_log(-2)          -0.000           0.003          -0.003           0.003
+              psx_log(-3)           0.000           0.002          -0.002           0.002
+              psx_log(-4)          -0.000           0.002          -0.002           0.001
+      ndcons_real_log(-1)           0.013           0.015          -0.002           0.028
+      ndcons_real_log(-2)          -0.001           0.009          -0.010           0.007
+      ndcons_real_log(-3)          -0.002           0.006          -0.007           0.004
+      ndcons_real_log(-4)          -0.001           0.005          -0.006           0.004
+         gdp_real_log(-1)           0.000           0.017          -0.017           0.018
+         gdp_real_log(-2)          -0.004           0.010          -0.015           0.005
+         gdp_real_log(-3)          -0.002           0.007          -0.009           0.005
+         gdp_real_log(-4)          -0.000           0.005          -0.005           0.005
+               er_log(-1)           0.004           0.017          -0.013           0.020
+               er_log(-2)           0.001           0.010          -0.009           0.011
+               er_log(-3)          -0.001           0.007          -0.008           0.006
+               er_log(-4)          -0.000           0.005          -0.006           0.005
+                 Constant           0.300           4.318          -4.075           4.388
+
+Sum of squared residuals: 94.77
+R-squared: 0.670
+adj. R-squared: 0.176
+
+
+Endogenous: mpinfl
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.037           0.183          -0.214           0.146
+             3MPRIBOR(-2)          -0.108           0.124          -0.235           0.014
+             3MPRIBOR(-3)          -0.114           0.085          -0.189          -0.025
+             3MPRIBOR(-4)          -0.095           0.063          -0.156          -0.031
+               mpinfl(-1)           0.848           0.072           0.778           0.919
+               mpinfl(-2)          -0.005           0.047          -0.052           0.042
+               mpinfl(-3)          -0.018           0.033          -0.051           0.013
+               mpinfl(-4)          -0.028           0.025          -0.054          -0.005
+             empl_log(-1)          -0.016           0.095          -0.109           0.079
+             empl_log(-2)           0.006           0.072          -0.064           0.076
+             empl_log(-3)          -0.009           0.048          -0.055           0.038
+             empl_log(-4)          -0.009           0.038          -0.045           0.030
+  avgwage_sa_real_log(-1)          -0.066           0.052          -0.116          -0.012
+  avgwage_sa_real_log(-2)          -0.001           0.031          -0.032           0.029
+  avgwage_sa_real_log(-3)           0.006           0.021          -0.016           0.026
+  avgwage_sa_real_log(-4)           0.008           0.016          -0.007           0.024
+            hpind_log(-1)           0.068           0.042           0.025           0.109
+            hpind_log(-2)           0.015           0.034          -0.017           0.048
+            hpind_log(-3)           0.003           0.024          -0.021           0.026
+            hpind_log(-4)          -0.001           0.018          -0.018           0.018
+              psx_log(-1)           0.010           0.013          -0.003           0.023
+              psx_log(-2)           0.002           0.009          -0.006           0.011
+              psx_log(-3)           0.003           0.006          -0.003           0.008
+              psx_log(-4)           0.000           0.005          -0.004           0.005
+      ndcons_real_log(-1)           0.047           0.044           0.003           0.090
+      ndcons_real_log(-2)           0.006           0.025          -0.018           0.032
+      ndcons_real_log(-3)           0.002           0.018          -0.015           0.019
+      ndcons_real_log(-4)          -0.000           0.013          -0.013           0.013
+         gdp_real_log(-1)          -0.035           0.049          -0.084           0.013
+         gdp_real_log(-2)          -0.005           0.030          -0.035           0.023
+         gdp_real_log(-3)          -0.002           0.020          -0.022           0.017
+         gdp_real_log(-4)           0.002           0.015          -0.014           0.016
+               er_log(-1)           0.014           0.047          -0.035           0.060
+               er_log(-2)           0.003           0.030          -0.024           0.034
+               er_log(-3)           0.004           0.020          -0.015           0.025
+               er_log(-4)           0.000           0.016          -0.016           0.017
+                 Constant           2.723          12.039          -9.227          14.423
+
+Sum of squared residuals: 641.20
+R-squared: 0.383
+adj. R-squared: -0.542
+
+
+Endogenous: empl_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.093           0.128          -0.220           0.034
+             3MPRIBOR(-2)          -0.002           0.084          -0.087           0.082
+             3MPRIBOR(-3)          -0.009           0.057          -0.063           0.048
+             3MPRIBOR(-4)          -0.007           0.043          -0.049           0.034
+               mpinfl(-1)           0.043           0.048          -0.005           0.092
+               mpinfl(-2)           0.017           0.033          -0.014           0.049
+               mpinfl(-3)           0.007           0.022          -0.015           0.028
+               mpinfl(-4)           0.003           0.016          -0.012           0.020
+             empl_log(-1)           0.836           0.065           0.770           0.902
+             empl_log(-2)           0.013           0.049          -0.035           0.063
+             empl_log(-3)           0.037           0.034           0.004           0.071
+             empl_log(-4)           0.027           0.026           0.003           0.053
+  avgwage_sa_real_log(-1)          -0.022           0.035          -0.056           0.012
+  avgwage_sa_real_log(-2)           0.005           0.021          -0.016           0.025
+  avgwage_sa_real_log(-3)           0.007           0.015          -0.008           0.022
+  avgwage_sa_real_log(-4)           0.004           0.011          -0.007           0.014
+            hpind_log(-1)          -0.026           0.029          -0.052           0.005
+            hpind_log(-2)          -0.002           0.023          -0.025           0.020
+            hpind_log(-3)           0.005           0.016          -0.010           0.022
+            hpind_log(-4)           0.002           0.013          -0.010           0.015
+              psx_log(-1)           0.014           0.009           0.005           0.023
+              psx_log(-2)          -0.001           0.006          -0.007           0.005
+              psx_log(-3)          -0.001           0.004          -0.005           0.003
+              psx_log(-4)          -0.001           0.003          -0.004           0.003
+      ndcons_real_log(-1)           0.008           0.030          -0.024           0.037
+      ndcons_real_log(-2)          -0.000           0.017          -0.017           0.017
+      ndcons_real_log(-3)           0.003           0.012          -0.008           0.014
+      ndcons_real_log(-4)           0.002           0.009          -0.007           0.011
+         gdp_real_log(-1)           0.022           0.033          -0.011           0.054
+         gdp_real_log(-2)           0.004           0.020          -0.016           0.025
+         gdp_real_log(-3)           0.006           0.013          -0.007           0.019
+         gdp_real_log(-4)           0.004           0.010          -0.006           0.014
+               er_log(-1)           0.025           0.032          -0.006           0.059
+               er_log(-2)           0.013           0.021          -0.008           0.033
+               er_log(-3)           0.000           0.014          -0.013           0.014
+               er_log(-4)          -0.001           0.011          -0.011           0.009
+                 Constant           1.849           8.798          -6.389          10.556
+
+Sum of squared residuals: 121.72
+R-squared: 0.681
+adj. R-squared: 0.202
+
+
+Endogenous: avgwage_sa_real_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.339           0.267          -0.619          -0.090
+             3MPRIBOR(-2)           0.083           0.185          -0.096           0.262
+             3MPRIBOR(-3)           0.071           0.123          -0.059           0.192
+             3MPRIBOR(-4)           0.051           0.094          -0.042           0.138
+               mpinfl(-1)          -0.036           0.102          -0.138           0.064
+               mpinfl(-2)           0.011           0.067          -0.054           0.076
+               mpinfl(-3)           0.021           0.047          -0.024           0.068
+               mpinfl(-4)           0.017           0.035          -0.020           0.051
+             empl_log(-1)           0.007           0.145          -0.134           0.151
+             empl_log(-2)          -0.069           0.103          -0.173           0.031
+             empl_log(-3)           0.015           0.071          -0.055           0.087
+             empl_log(-4)           0.032           0.055          -0.025           0.085
+  avgwage_sa_real_log(-1)           0.847           0.072           0.775           0.913
+  avgwage_sa_real_log(-2)           0.017           0.043          -0.027           0.058
+  avgwage_sa_real_log(-3)           0.011           0.029          -0.018           0.041
+  avgwage_sa_real_log(-4)           0.002           0.022          -0.020           0.025
+            hpind_log(-1)          -0.004           0.063          -0.069           0.059
+            hpind_log(-2)          -0.009           0.052          -0.061           0.041
+            hpind_log(-3)           0.008           0.034          -0.028           0.040
+            hpind_log(-4)           0.009           0.026          -0.015           0.035
+              psx_log(-1)          -0.010           0.018          -0.027           0.008
+              psx_log(-2)          -0.007           0.012          -0.019           0.005
+              psx_log(-3)          -0.002           0.009          -0.010           0.007
+              psx_log(-4)          -0.002           0.006          -0.008           0.004
+      ndcons_real_log(-1)          -0.023           0.065          -0.084           0.041
+      ndcons_real_log(-2)           0.002           0.036          -0.035           0.035
+      ndcons_real_log(-3)           0.018           0.025          -0.008           0.042
+      ndcons_real_log(-4)           0.011           0.018          -0.007           0.030
+         gdp_real_log(-1)           0.062           0.070          -0.008           0.134
+         gdp_real_log(-2)           0.017           0.044          -0.028           0.061
+         gdp_real_log(-3)           0.018           0.028          -0.009           0.046
+         gdp_real_log(-4)           0.010           0.023          -0.012           0.032
+               er_log(-1)           0.017           0.068          -0.056           0.081
+               er_log(-2)           0.002           0.043          -0.041           0.046
+               er_log(-3)          -0.005           0.029          -0.035           0.023
+               er_log(-4)           0.002           0.023          -0.023           0.023
+                 Constant          -5.153          17.540         -23.088          11.556
+
+Sum of squared residuals: 4628.77
+R-squared: 0.244
+adj. R-squared: -0.889
+
+
+Endogenous: hpind_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.302           0.223          -0.519          -0.067
+             3MPRIBOR(-2)          -0.051           0.146          -0.198           0.094
+             3MPRIBOR(-3)          -0.000           0.103          -0.098           0.097
+             3MPRIBOR(-4)           0.028           0.075          -0.049           0.101
+               mpinfl(-1)          -0.076           0.085          -0.156           0.002
+               mpinfl(-2)          -0.019           0.052          -0.070           0.033
+               mpinfl(-3)           0.012           0.039          -0.025           0.050
+               mpinfl(-4)           0.019           0.029          -0.010           0.048
+             empl_log(-1)          -0.103           0.112          -0.213           0.003
+             empl_log(-2)          -0.087           0.082          -0.172          -0.006
+             empl_log(-3)          -0.019           0.059          -0.075           0.039
+             empl_log(-4)          -0.008           0.045          -0.051           0.036
+  avgwage_sa_real_log(-1)           0.088           0.059           0.030           0.147
+  avgwage_sa_real_log(-2)           0.025           0.036          -0.011           0.061
+  avgwage_sa_real_log(-3)           0.009           0.023          -0.014           0.031
+  avgwage_sa_real_log(-4)           0.003           0.019          -0.015           0.021
+            hpind_log(-1)           0.941           0.053           0.890           0.993
+            hpind_log(-2)           0.012           0.041          -0.031           0.052
+            hpind_log(-3)           0.003           0.028          -0.024           0.030
+            hpind_log(-4)           0.004           0.021          -0.016           0.024
+              psx_log(-1)           0.007           0.015          -0.007           0.022
+              psx_log(-2)          -0.006           0.010          -0.016           0.005
+              psx_log(-3)          -0.006           0.007          -0.013           0.001
+              psx_log(-4)          -0.003           0.005          -0.009           0.002
+      ndcons_real_log(-1)          -0.045           0.052          -0.096           0.008
+      ndcons_real_log(-2)          -0.013           0.030          -0.042           0.017
+      ndcons_real_log(-3)          -0.007           0.021          -0.027           0.013
+      ndcons_real_log(-4)          -0.000           0.016          -0.016           0.015
+         gdp_real_log(-1)           0.091           0.058           0.034           0.152
+         gdp_real_log(-2)           0.020           0.034          -0.015           0.055
+         gdp_real_log(-3)           0.007           0.024          -0.016           0.031
+         gdp_real_log(-4)           0.003           0.018          -0.013           0.022
+               er_log(-1)           0.001           0.055          -0.055           0.054
+               er_log(-2)           0.011           0.034          -0.024           0.044
+               er_log(-3)           0.006           0.024          -0.017           0.029
+               er_log(-4)           0.003           0.019          -0.014           0.023
+                 Constant          -5.583          14.277         -20.075           8.810
+
+Sum of squared residuals: 361.17
+R-squared: 0.982
+adj. R-squared: 0.955
+
+
+Endogenous: psx_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.643           0.984          -1.560           0.385
+             3MPRIBOR(-2)           0.151           0.678          -0.537           0.812
+             3MPRIBOR(-3)           0.179           0.460          -0.278           0.616
+             3MPRIBOR(-4)           0.168           0.361          -0.178           0.506
+               mpinfl(-1)          -0.186           0.402          -0.597           0.200
+               mpinfl(-2)           0.048           0.262          -0.202           0.313
+               mpinfl(-3)           0.078           0.175          -0.090           0.249
+               mpinfl(-4)           0.065           0.131          -0.069           0.191
+             empl_log(-1)           0.476           0.552          -0.062           1.000
+             empl_log(-2)           0.138           0.397          -0.241           0.531
+             empl_log(-3)           0.003           0.276          -0.279           0.284
+             empl_log(-4)           0.002           0.209          -0.212           0.193
+  avgwage_sa_real_log(-1)           0.025           0.264          -0.239           0.292
+  avgwage_sa_real_log(-2)          -0.072           0.172          -0.235           0.106
+  avgwage_sa_real_log(-3)          -0.045           0.117          -0.151           0.071
+  avgwage_sa_real_log(-4)          -0.018           0.088          -0.104           0.069
+            hpind_log(-1)           0.191           0.236          -0.038           0.427
+            hpind_log(-2)           0.054           0.189          -0.131           0.246
+            hpind_log(-3)           0.041           0.135          -0.090           0.170
+            hpind_log(-4)           0.064           0.102          -0.040           0.166
+              psx_log(-1)           0.846           0.072           0.775           0.919
+              psx_log(-2)          -0.071           0.048          -0.117          -0.023
+              psx_log(-3)          -0.022           0.033          -0.054           0.011
+              psx_log(-4)          -0.001           0.025          -0.027           0.022
+      ndcons_real_log(-1)           0.009           0.242          -0.241           0.237
+      ndcons_real_log(-2)          -0.064           0.140          -0.206           0.073
+      ndcons_real_log(-3)          -0.050           0.098          -0.151           0.046
+      ndcons_real_log(-4)          -0.024           0.076          -0.097           0.053
+         gdp_real_log(-1)          -0.041           0.276          -0.303           0.220
+         gdp_real_log(-2)          -0.110           0.162          -0.264           0.052
+         gdp_real_log(-3)          -0.059           0.113          -0.175           0.048
+         gdp_real_log(-4)          -0.025           0.086          -0.106           0.062
+               er_log(-1)           0.157           0.267          -0.100           0.422
+               er_log(-2)           0.098           0.165          -0.069           0.262
+               er_log(-3)          -0.017           0.115          -0.134           0.096
+               er_log(-4)          -0.016           0.089          -0.104           0.073
+                 Constant           7.748          68.173         -58.352          78.537
+
+Sum of squared residuals: 2839.22
+R-squared: 0.774
+adj. R-squared: 0.434
+
+
+Endogenous: ndcons_real_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.300           0.330          -0.619           0.022
+             3MPRIBOR(-2)           0.012           0.227          -0.223           0.226
+             3MPRIBOR(-3)          -0.031           0.155          -0.171           0.128
+             3MPRIBOR(-4)          -0.016           0.115          -0.134           0.094
+               mpinfl(-1)          -0.014           0.127          -0.133           0.112
+               mpinfl(-2)          -0.000           0.085          -0.085           0.083
+               mpinfl(-3)           0.012           0.059          -0.045           0.071
+               mpinfl(-4)           0.009           0.045          -0.035           0.055
+             empl_log(-1)           0.196           0.170           0.038           0.360
+             empl_log(-2)          -0.030           0.124          -0.161           0.091
+             empl_log(-3)           0.024           0.087          -0.060           0.108
+             empl_log(-4)           0.029           0.069          -0.039           0.094
+  avgwage_sa_real_log(-1)          -0.035           0.090          -0.124           0.057
+  avgwage_sa_real_log(-2)           0.013           0.054          -0.043           0.065
+  avgwage_sa_real_log(-3)           0.006           0.037          -0.030           0.043
+  avgwage_sa_real_log(-4)          -0.003           0.027          -0.028           0.026
+            hpind_log(-1)           0.050           0.076          -0.028           0.123
+            hpind_log(-2)          -0.013           0.062          -0.075           0.045
+            hpind_log(-3)          -0.001           0.043          -0.044           0.042
+            hpind_log(-4)           0.001           0.032          -0.030           0.032
+              psx_log(-1)           0.026           0.022           0.006           0.048
+              psx_log(-2)          -0.004           0.015          -0.018           0.011
+              psx_log(-3)          -0.003           0.011          -0.013           0.008
+              psx_log(-4)          -0.004           0.008          -0.012           0.004
+      ndcons_real_log(-1)           0.760           0.079           0.686           0.840
+      ndcons_real_log(-2)          -0.008           0.044          -0.055           0.033
+      ndcons_real_log(-3)           0.006           0.030          -0.023           0.037
+      ndcons_real_log(-4)          -0.001           0.023          -0.024           0.022
+         gdp_real_log(-1)           0.049           0.088          -0.039           0.137
+         gdp_real_log(-2)           0.019           0.051          -0.036           0.067
+         gdp_real_log(-3)           0.013           0.035          -0.021           0.049
+         gdp_real_log(-4)          -0.002           0.028          -0.028           0.027
+               er_log(-1)           0.039           0.082          -0.043           0.118
+               er_log(-2)           0.006           0.053          -0.048           0.060
+               er_log(-3)           0.000           0.035          -0.035           0.034
+               er_log(-4)           0.008           0.028          -0.021           0.035
+                 Constant          -2.937          22.003         -25.285          17.767
+
+Sum of squared residuals: 951.57
+R-squared: 0.741
+adj. R-squared: 0.353
+
+
+Endogenous: gdp_real_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)          -0.279           0.296          -0.582           0.019
+             3MPRIBOR(-2)           0.020           0.201          -0.180           0.215
+             3MPRIBOR(-3)           0.029           0.136          -0.114           0.150
+             3MPRIBOR(-4)           0.006           0.102          -0.096           0.107
+               mpinfl(-1)           0.038           0.110          -0.072           0.143
+               mpinfl(-2)           0.016           0.074          -0.057           0.088
+               mpinfl(-3)           0.020           0.052          -0.032           0.070
+               mpinfl(-4)           0.013           0.039          -0.026           0.051
+             empl_log(-1)           0.102           0.152          -0.056           0.242
+             empl_log(-2)          -0.042           0.110          -0.155           0.066
+             empl_log(-3)           0.021           0.079          -0.058           0.094
+             empl_log(-4)           0.026           0.060          -0.033           0.085
+  avgwage_sa_real_log(-1)           0.017           0.080          -0.062           0.099
+  avgwage_sa_real_log(-2)           0.011           0.048          -0.036           0.056
+  avgwage_sa_real_log(-3)           0.012           0.033          -0.020           0.044
+  avgwage_sa_real_log(-4)           0.004           0.024          -0.020           0.027
+            hpind_log(-1)           0.039           0.067          -0.031           0.101
+            hpind_log(-2)          -0.015           0.054          -0.067           0.038
+            hpind_log(-3)          -0.002           0.038          -0.038           0.038
+            hpind_log(-4)           0.001           0.028          -0.028           0.028
+              psx_log(-1)           0.016           0.020          -0.003           0.036
+              psx_log(-2)          -0.004           0.013          -0.017           0.009
+              psx_log(-3)          -0.002           0.009          -0.012           0.007
+              psx_log(-4)          -0.003           0.007          -0.010           0.004
+      ndcons_real_log(-1)          -0.036           0.071          -0.104           0.038
+      ndcons_real_log(-2)          -0.009           0.039          -0.048           0.028
+      ndcons_real_log(-3)           0.014           0.027          -0.012           0.043
+      ndcons_real_log(-4)           0.008           0.020          -0.013           0.027
+         gdp_real_log(-1)           0.863           0.078           0.779           0.935
+         gdp_real_log(-2)           0.011           0.046          -0.035           0.053
+         gdp_real_log(-3)           0.017           0.031          -0.014           0.049
+         gdp_real_log(-4)           0.006           0.025          -0.017           0.031
+               er_log(-1)           0.089           0.074           0.016           0.162
+               er_log(-2)           0.021           0.047          -0.026           0.068
+               er_log(-3)           0.003           0.031          -0.030           0.033
+               er_log(-4)           0.006           0.025          -0.020           0.031
+                 Constant          -5.418          19.477         -24.394          13.964
+
+Sum of squared residuals: 8147.24
+R-squared: -0.224
+adj. R-squared: -2.061
+
+
+Endogenous: er_log
+                                   Median          St.dev       Low.bound       Upp.bound
+             3MPRIBOR(-1)           0.271           0.271          -0.001           0.534
+             3MPRIBOR(-2)           0.030           0.191          -0.169           0.208
+             3MPRIBOR(-3)           0.016           0.127          -0.112           0.132
+             3MPRIBOR(-4)           0.011           0.098          -0.094           0.106
+               mpinfl(-1)          -0.075           0.106          -0.174           0.030
+               mpinfl(-2)          -0.004           0.071          -0.078           0.064
+               mpinfl(-3)          -0.005           0.048          -0.053           0.041
+               mpinfl(-4)           0.013           0.036          -0.025           0.046
+             empl_log(-1)           0.089           0.142          -0.046           0.234
+             empl_log(-2)           0.033           0.107          -0.070           0.137
+             empl_log(-3)          -0.009           0.072          -0.082           0.063
+             empl_log(-4)          -0.005           0.059          -0.063           0.053
+  avgwage_sa_real_log(-1)           0.061           0.075          -0.015           0.134
+  avgwage_sa_real_log(-2)          -0.001           0.045          -0.042           0.045
+  avgwage_sa_real_log(-3)           0.002           0.032          -0.029           0.034
+  avgwage_sa_real_log(-4)           0.004           0.023          -0.021           0.026
+            hpind_log(-1)          -0.008           0.065          -0.071           0.057
+            hpind_log(-2)          -0.023           0.052          -0.075           0.026
+            hpind_log(-3)          -0.021           0.036          -0.059           0.015
+            hpind_log(-4)          -0.018           0.027          -0.045           0.009
+              psx_log(-1)          -0.028           0.020          -0.047          -0.008
+              psx_log(-2)           0.015           0.013           0.002           0.028
+              psx_log(-3)           0.002           0.009          -0.007           0.011
+              psx_log(-4)          -0.001           0.007          -0.007           0.006
+      ndcons_real_log(-1)          -0.027           0.065          -0.095           0.033
+      ndcons_real_log(-2)          -0.010           0.038          -0.048           0.026
+      ndcons_real_log(-3)          -0.003           0.026          -0.028           0.024
+      ndcons_real_log(-4)          -0.000           0.021          -0.021           0.020
+         gdp_real_log(-1)           0.000           0.075          -0.073           0.075
+         gdp_real_log(-2)           0.003           0.045          -0.041           0.047
+         gdp_real_log(-3)           0.002           0.029          -0.027           0.033
+         gdp_real_log(-4)           0.000           0.023          -0.022           0.023
+               er_log(-1)           0.795           0.069           0.725           0.862
+               er_log(-2)          -0.022           0.043          -0.065           0.021
+               er_log(-3)           0.003           0.029          -0.026           0.032
+               er_log(-4)           0.002           0.024          -0.021           0.026
+                 Constant          -1.177          18.246         -19.582          16.342
+
+Sum of squared residuals: 164.76
+R-squared: 0.838
+adj. R-squared: 0.595
+
+
+Log 10 marginal likelihood: -463.61
+
+
+DIC test result: 1850.51
+The model with smaller DIC value is preferred
+
+Roots of the characteristic polynomial (modulus):
+0.977  0.817  0.632  0.329  0.307  0.264  0.236  0.186  0.124
+0.977  0.817  0.632  0.323  0.300  0.264  0.236  0.186  0.124
+0.869  0.774  0.391  0.323  0.300  0.247  0.223  0.156  0.120
+0.869  0.774  0.391  0.307  0.283  0.247  0.223  0.156  0.120
+No root lies outside the unit circle.
+The estimated VAR model satisfies the stability condition
+
+
+sigma (residual covariance matrix): posterior estimates
+  0.156    0.245    0.072   -0.070   -0.021    0.573    0.214    0.086   -0.228  
+  0.245    1.275    0.084   -0.810   -0.620   -0.053   -0.426   -0.535   -0.314  
+  0.072    0.084    0.627    0.378    0.257    0.484    0.657    0.562   -0.297  
+ -0.070   -0.810    0.378    2.769    1.178   -0.211    2.245    2.396   -0.422  
+ -0.021   -0.620    0.257    1.178    1.822    0.244    1.212    1.067    0.278  
+  0.573   -0.053    0.484   -0.211    0.244   40.049    2.027    0.255   -6.181  
+  0.214   -0.426    0.657    2.245    1.212    2.027    4.126    3.072   -1.065  
+  0.086   -0.535    0.562    2.396    1.067    0.255    3.072    3.235   -0.588  
+ -0.228   -0.314   -0.297   -0.422    0.278   -6.181   -1.065   -0.588    2.899  
+
+
+
+D (structural decomposition matrix): posterior estimates
+-0.130   0.241   0.015   0.083   0.041  -0.028  -0.027  -0.301   0.033  
+ 0.283   0.646  -0.597   0.497   0.436  -0.223  -0.159  -0.232  -0.132  
+ 0.314   0.075   0.280  -0.189   0.505  -0.099  -0.332  -0.192   0.057  
+ 0.557   0.021   0.801  -0.867  -0.445   0.509  -0.000  -0.249  -0.795  
+ 0.009  -0.093   0.575  -0.523   0.601   0.795   0.353   0.043  -0.416  
+ 0.810  -1.171  -0.435   1.999  -1.520   2.350   0.275  -3.842   4.778  
+ 0.221   0.897   0.443  -0.901  -0.367   0.748  -0.466  -0.591   0.470  
+ 0.428   0.157   0.079  -1.385  -0.241   0.271  -0.400  -0.461  -0.175  
+-0.203   0.170   0.084  -0.463   0.641  -0.518   1.176   1.070  -0.427  
+
+
+gamma (structural disturbances covariance matrix): posterior estimates
+ 1.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000  
+ 0.000   1.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000  
+ 0.000   0.000   1.000   0.000   0.000   0.000   0.000   0.000   0.000  
+ 0.000   0.000   0.000   1.000   0.000   0.000   0.000   0.000   0.000  
+ 0.000   0.000   0.000   0.000   1.000   0.000   0.000   0.000   0.000  
+ 0.000   0.000   0.000   0.000   0.000   1.000   0.000   0.000   0.000  
+ 0.000   0.000   0.000   0.000   0.000   0.000   1.000   0.000   0.000  
+ 0.000   0.000   0.000   0.000   0.000   0.000   0.000   1.000   0.000  
+ 0.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000   1.000  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% RESULTS
+load('results_BVAR-sr_9vars.mat')
+IRFvariables = cellstr(endo);  % char matrix to cell array of strings
+
+% variables of interest
+target_vars = {
+    '3MPRIBOR', ...
+    'mpinfl', ...
+    'empl_log', ...
+    'avgwage_sa_real_log', ...
+    'hpind_log', ...
+    'psx_log', ...
+    'ndcons_real_log'
+};
+
+% define shock variable indices
+var_idx_pribor = find(strcmp(IRFvariables, '3MPRIBOR'));
+shock_idx = find(strcmp(IRFvariables, '3MPRIBOR'));
+
+% extract IRFs of shock variable
+irf_pribor = struct_irf_record{var_idx_pribor, shock_idx}; % assuming [respons x shock]
+
+% median response across draws at horizon 1 (shall equal 1)
+median_impact_pribor = median(irf_pribor(:, 1));  % assuming [draws x horizons]
+
+% scale median to -1.00 (−100 b.p. shock)
+scaling = -1 / median_impact_pribor;
+fprintf('scaling factor for −100 bp shock: %.4f\n\n', scaling);
+scaling factor for −100 bp shock: 8.2957
+
+
+% loop through target variables
+for i = 1:length(target_vars)
+    varname = target_vars{i};
+    var_idx = find(strcmp(IRFvariables, varname));
+    
+    irf_var = struct_irf_record{var_idx, shock_idx};
+    irf_var_norm = irf_var * scaling;
+
+    % median responses across draws at horizons 3–5
+    median_h3 = median(irf_var_norm(:, 3));
+    median_h4 = median(irf_var_norm(:, 4));
+    median_h5 = median(irf_var_norm(:, 5));
+
+    % average the median responses
+    avg_median_response = mean([median_h3, median_h4, median_h5]);
+    fprintf('avg. median response of %-25s: %+6.4f\n', varname, avg_median_response);
+end
+avg. median response of 3MPRIBOR                 : -0.3748
+avg. median response of mpinfl                   : +0.7442
+avg. median response of empl_log                 : +1.5821
+avg. median response of avgwage_sa_real_log      : +3.1022
+avg. median response of hpind_log                : +2.9402
+avg. median response of psx_log                  : +4.1650
+avg. median response of ndcons_real_log          : +2.9748
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% IRF PLOT
+n_horizons = 20;
+figure;
+
+% variables for IRF plot
+plot_vars = IRFvariables;
+
+for i = 1:length(plot_vars)
+    varname = plot_vars{i};
+    var_idx = find(strcmp(IRFvariables, varname));
+
+    % extract and scale IRFs
+    irf_var = struct_irf_record{var_idx, shock_idx};
+    irf_var_norm = irf_var * scaling;
+
+    % desired horizon
+    irf_trimmed = irf_var_norm(:, 1:n_horizons);
+
+    % stats across draws
+    median_irf = median(irf_trimmed, 1);
+    lower68 = prctile(irf_trimmed, 16, 1);
+    upper68 = prctile(irf_trimmed, 84, 1);
+    lower90 = prctile(irf_trimmed, 5, 1);
+    upper90 = prctile(irf_trimmed, 95, 1);
+    q = 1:n_horizons;
+
+    % plot
+    subplot(3, 3, i);
+    hold on;
+    fill([q fliplr(q)], [lower90 fliplr(upper90)], [0.8 0.85 1], 'EdgeColor', 'none');  % 90% band (lighter blue)
+    fill([q fliplr(q)], [lower68 fliplr(upper68)], [0.6 0.7 1], 'EdgeColor', 'none');   % 68% band (darker blue)
+    plot(q, median_irf, 'k-', 'LineWidth', 2);
+    yline(0, '--k');
+    title(varname, 'Interpreter', 'none');
+    xlabel('quarters'); ylabel('% or p.p.');
+    grid on;
+end
+
+sgtitle('Impulse responses to −100 bp monetary policy shock');
+diary off
