@@ -1,7 +1,7 @@
 # !CONTENT OF THIS REPO IS WORK IN PROGRESS!
 
 # mastersthesis
-The main purpose of this repository is to provide replication files for my master's thesis in a structured form of a complete tree of folders and files. Hopefully, this will enhance the transparency of my results and simplify possible replication of my work. Naturally, source (especially micro-level) data files are not to be shared, hence the "data" folder is included only to complement the structure.
+The main purpose of this repository is to provide replication files for my master's thesis in a structured form of a complete tree of folders and files. Hopefully, this will enhance the transparency of my results and simplify possible replication of my work. The "data" folder is included only to complement the project structure and intentionally does not contain any actual datasets. The HFCS and LFSS data used in the analysis are not publicly available and were provided under data access agreements that prohibit redistribution. Also the estimated monetary policy shocks are not to be shared. Other macroeconomic variables used in the project can be traced using the descriptions and data codes provided in the thesis text.
 
 ## thesis
 topic: **Household Heterogeneity and Monetary Policy Transmission in the Czech Economy**  
