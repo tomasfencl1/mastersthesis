@@ -32,3 +32,7 @@ source(file.path(PROGRAMS, "datatransf.R"))
 ################################################################################
 # Program to analyze the variables
 source(file.path(PROGRAMS, "analys.R"))
+
+################################################################################
+# Program to run local projections
+source(file.path(PROGRAMS, "lp.R"))
