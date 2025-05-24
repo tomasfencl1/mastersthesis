@@ -144,8 +144,13 @@ df <- df %>%
 
 df <- df %>%
   mutate(
-    illiquidass = rowSums(dplyr::select(., house, occupational, da2109, da1140), na.rm = TRUE),
-    illiquidebt = rowSums(dplyr::select(., unsecuredhome, mortDebt), na.rm = TRUE),
+    if (illiquidef == 1) {
+      illiquidass = rowSums(dplyr::select(., da2106, da2107, da2108, house, occupational, da1130, da1131, da2109, da1140), na.rm = TRUE)
+      illiquidebt = rowSums(dplyr::select(., unsecuredhome, mortDebt), na.rm = TRUE)
+    } else {
+      illiquidass = rowSums(dplyr::select(., house, occupational, da2109, da1140), na.rm = TRUE)
+      illiquidebt = rowSums(dplyr::select(., unsecuredhome, mortDebt), na.rm = TRUE)
+    },
     illiquid = illiquidass - illiquidebt
   )
 

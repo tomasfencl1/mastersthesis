@@ -24,6 +24,7 @@ estimateImputationCoeffs <- 0 # 1 to estimate coefficients and share targets for
 
 # options (HFCS flow)
 top10Index <- 0  # Separate the top 10 by wealth [default: No/0]
+illiquidef <- 0  # Definition of illiquid assets [default: alaSlacalek/0]
 blowupStockMarketIndex <- 0  # Blow up holdings of stock market wealth of top 10 [default: No/0]
 multiplyBizWealthWithStocks <- 0  # Multiply business wealth with stock prices [default: No/0] 
 
