@@ -6,7 +6,7 @@
 # Load packages
 library(dplyr)
 library(tidyr)
-library(Hmisc)
+#library(Hmisc)
 
 ################################################################################
 # Load P1 to P5 occupational pension data and append them
@@ -144,18 +144,17 @@ df <- df %>%
 
 df <- df %>%
   mutate(
-    if (illiquidef == 1) {
-      illiquidass = rowSums(dplyr::select(., da2106, da2107, da2108, house, occupational, da1130, da1131, da2109, da1140), na.rm = TRUE)
-      illiquidebt = rowSums(dplyr::select(., unsecuredhome, mortDebt), na.rm = TRUE)
+    illiquidass = if (illiquidef == 1) {
+      rowSums(select(., da2106, da2107, da2108, house, occupational, da1130, da1131, da2109, da1140), na.rm = TRUE)
     } else {
-      illiquidass = rowSums(dplyr::select(., house, occupational, da2109, da1140), na.rm = TRUE)
-      illiquidebt = rowSums(dplyr::select(., unsecuredhome, mortDebt), na.rm = TRUE)
+      rowSums(select(., house, occupational, da2109, da1140), na.rm = TRUE)
     },
+    illiquidebt = rowSums(select(., unsecuredhome, mortDebt), na.rm = TRUE),
     illiquid = illiquidass - illiquidebt
   )
 
 ################################################################################
-# HtM defined based on the gross income (old version)
+# HtM defined based on the gross income (old version, ala Slacalek definition)
 #df <- df %>%
 #  mutate(
 #    norentIncome = rowSums(dplyr::select(., di1100, di1200, di1610, di1620, di1700, di1510, di1520), na.rm = TRUE),
@@ -190,8 +189,44 @@ df <- df %>%
       poorhtm == 1 ~ 1,
       wealhtm == 1 ~ 2,
       htm == 0 ~ 3
-    )
+    ),
+    # for an extra check
+    biweeklyy_gross = grossIncome / 24,
+    credit_gross = grossIncome / 12,
+    htm_gross = ifelse(liquid <= biweeklyy_gross & liquid >= 0 | liquid <= (biweeklyy_gross - credit_gross) & liquid < 0, 1, 0),
+    positiveliquidhtm = ifelse(liquid <= biweeklyy & liquid >= 0, 1, 0), 
+    negativeliquidhtm = ifelse(liquid <= (biweeklyy - credit) & liquid < 0, 1, 0),
+    positiveliquid = ifelse(liquid >= 0, 1, 0), 
+    negativeliquid = ifelse(liquid < 0, 1, 0)
   )
+
+# Check the share of (HtM) households based on gross income and with negative liquid wealth
+liquidity_HtMshare <- df %>% 
+  summarise(
+    nethtm_share = weighted.mean(htm, hw0010, na.rm = TRUE) * 100,
+    grosshtm_share = weighted.mean(htm_gross, hw0010, na.rm = TRUE) * 100,
+    positiveliquidhtm_share = weighted.mean(positiveliquidhtm, hw0010, na.rm = TRUE) * 100,
+    negativeliquidhtm_share = weighted.mean(negativeliquidhtm, hw0010, na.rm = TRUE) * 100,
+    positiveliquid_share = weighted.mean(positiveliquid, hw0010, na.rm = TRUE) * 100,
+    negativeliquid_share = weighted.mean(negativeliquid, hw0010, na.rm = TRUE) * 100
+  ) 
+liquidity_HtMshare
+
+# Define wtd_quantile function
+wtd_quantile <- function(x, weights, probs = 0.5, na.rm = FALSE) {
+  if (na.rm) {
+    idx <- !is.na(x) & !is.na(weights)
+    x <- x[idx]
+    weights <- weights[idx]
+  }
+  ord <- order(x)
+  x <- x[ord]
+  weights <- weights[ord]
+  cum_weights <- cumsum(weights) / sum(weights)
+  sapply(probs, function(p) {
+    x[which(cum_weights >= p)[1]]
+  })
+}
 
 # Add top 10 status
 if (top10Index == 1) {
@@ -202,7 +237,7 @@ if (top10Index == 1) {
   df <- df %>% 
     group_by(im0100) %>% 
     mutate(
-      wealth_threshold_top10 = wtd.quantile(dn3001[statushtm == 3], weights = hw0010[statushtm == 3], probs = 0.85, na.rm = TRUE)
+      wealth_threshold_top10 = wtd_quantile(dn3001[statushtm == 3], weights = hw0010[statushtm == 3], probs = 0.85, na.rm = TRUE)
     ) %>% 
     ungroup()
   

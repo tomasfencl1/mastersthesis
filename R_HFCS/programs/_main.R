@@ -9,18 +9,18 @@
 
 ################################################################################
 # MAIN 
-# desc: runs the HFCS analysis, estimates imputation coefficients for CSU and prints results
+# desc: runs the HFCS analysis, estimates imputation coefficients for LFS and prints results
 ################################################################################
 
 # Reset environment and load packages
-rm(list = ls())
+rm(list = ls()) 
 library(openxlsx)
 
 ################################################################################
 # SWITCHES
 # for data setup
 calculateNetIncome <- 0  # 1 to approximate net income using a simplification of the CZ tax schedule
-estimateImputationCoeffs <- 0 # 1 to estimate coefficients and share targets for HtM imputation to CSU dataset
+estimateImputationCoeffs <- 0 # 1 to estimate coefficients and share targets for HtM imputation to LFS dataset
 
 # options (HFCS flow)
 top10Index <- 0  # Separate the top 10 by wealth [default: No/0]
@@ -28,7 +28,11 @@ illiquidef <- 0  # Definition of illiquid assets [default: alaSlacalek/0]
 blowupStockMarketIndex <- 0  # Blow up holdings of stock market wealth of top 10 [default: No/0]
 multiplyBizWealthWithStocks <- 0  # Multiply business wealth with stock prices [default: No/0] 
 
-# options (CSU imputation)
+# options (LFS imputation)
+ageGrpMethod <- 3 # Age group to age transformation method [default: Standard/1]
+  # 1 - Model uses actual age for coefficient estimation
+  # 2 - Model uses age group midpoint for coefficient estimation
+  # 3 - Model uses age group index for coefficient estimation
 imputationModelChoice <- 3 # Choose model variant for HtM imputation [default: 2]
   # 1 - Model with personal and employment characteristics, including job and ungrouped sec 
   # 2 - Model with personal and employment characteristics, including job and grouped sec
@@ -37,7 +41,7 @@ imputationWeighted <- 0 # Choose whether to use weights in imputation models [de
 runLASSO <- 0 # Run LASSO model for HtM imputation coefficients [default: Yes/1]
 runBMA <- 0 # Run BMA model for HtM imputation coefficients [default: Yes/1]
 runBMAhg <- 0 # Run BMA model with hyper-g prior for HtM imputation coefficients [default: No/0]
-runProbit <- 1 # Run probit model for HtM imputation coefficients [default: Yes/1]
+runProbit <- 0 # Run probit model for HtM imputation coefficients [default: Yes/1]
 
 ################################################################################
 # Define paths and file locations
@@ -77,23 +81,23 @@ mpc_stock_htm <- 0.07  # Stock market MPC for HtM
 mpc_stock_nhtm <- 0.01  # Stock market MPC for non-HtM
 
 ################################################################################
-# Incidence functions (elasticities from CSU data)
+# Incidence functions (elasticities from LFS data)
 incid_phtm_CZ <- 1
-  # CZ ala Slacalek 2.65
+  # CZ ala Slacalek 2.20
 incid_whtm_CZ <- 1
-  # CZ ala Slacalek 1.82
+  # CZ ala Slacalek 1.53
 incid_nhtm_CZ <- 1
-  # CZ ala Slacalek 0.85
+  # CZ ala Slacalek 0.90
 
 if (top10Index == 1) {
   incid_phtm_CZ <- 1
-  # CZ ala Slacalek 2.75
+  # CZ ala Slacalek 2.29
   incid_whtm_CZ <- 1
-  # CZ ala Slacalek 1.89
+  # CZ ala Slacalek 1.59
   incid_nhtm_CZ <- 1
-  # CZ ala Slacalek 0.99
+  # CZ ala Slacalek 1.03
   incid_top10_CZ <- 1
-  # CZ ala Slacalek 0.29
+  # CZ ala Slacalek 0.36
 }
 
 ################################################################################
@@ -161,10 +165,10 @@ source(file.path(PROGRAMS, "statusHtM.R"))
 source(file.path(PROGRAMS, "charts/HtMdemographicsCharts.R"))
 
 ################################################################################
-# Coefficient and share target estimation for imputation of HtM to CSU dataset
+# Coefficient and share target estimation for imputation of HtM to LFS dataset
 if (estimateImputationCoeffs == 1) {
-  source(file.path(PROGRAMS, "csu/htm_prediction.R"))
-  source(file.path(PROGRAMS, "csu/htmshares_HFCStargets.R"))
+  source(file.path(PROGRAMS, "lfs/htm_prediction.R"))
+  source(file.path(PROGRAMS, "lfs/htmshares_HFCStargets.R"))
 }
 
 ################################################################################
