@@ -293,7 +293,5 @@ HANKvsVAR_plot <- plot_grid(HANKvsVAR_plot, annotation, ncol = 1, rel_heights = 
 # Save plots
 ggsave(paste0(DBNAME, "_HANKvsVAR_plot.png"), plot = HANKvsVAR_plot, path = file.path(GRAPHS), bg = "white", width = 7, height = 7)
 
-View(df_comp)
-
 # Clean up temporary files
 #file.remove(file.path(OUTPUT, "temp.csv"), file.path(OUTPUT, "temp1.csv"))

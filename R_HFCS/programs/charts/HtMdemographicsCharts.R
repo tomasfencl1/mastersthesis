@@ -598,7 +598,6 @@ ggsave(paste0(DBNAME, "_NetIlliquidWealth_decomp.png"), plot = NetIlliquidWealth
 HtMshare_incqtile <- df_filtered %>%
   mutate(di2001 = if_else(if_all(c(di1100, di1200, di1300, di1400, di1500, di1600, di1700, di1800), is.na), NA_real_, di2001))
 
-# Prepare
 imputations <- unique(HtMshare_incqtile$im0100)
 
 # Loop through each implicate and calculate quintiles for all rows
