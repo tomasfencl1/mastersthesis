@@ -6,7 +6,7 @@ The main purpose of this repository is to provide replication files for my maste
 ## thesis
 topic: **Household Heterogeneity and Monetary Policy Transmission in the Czech Economy**  
 author: Bc. Tomas Fencl  
-year of defense: 2025  
+date of defense: 17.9.2025  
 institution: Charles University, Faculty of Social Sciences, Institute of Economic Studies  
 supervisor: PhDr. Jaromír Baxa Ph.D.  
 
